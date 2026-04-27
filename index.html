@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English for Isaan — จากศูนย์ถึง IELTS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Sans+Thai:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96B;
+    --gold-dim: #8A6E2A;
+    --cream: #F9F4E8;
+    --dark: #1A1208;
+    --bark: #3D2B0E;
+    --moss: #4A6741;
+    --sky: #5B8FA8;
+    --red: #C04A2A;
+    --mid: #2E1F08;
+    --shadow: 0 6px 32px rgba(26,18,8,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    font-family: 'Noto Sans Thai', sans-serif;
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 60px 24px 80px;
+    overflow: hidden;
+  }
+
+  /* animated grain overlay */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* radial glow */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 70%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  h1.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s forwards;
+  }
+
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #BBA97A;
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 8px;
+    padding: 15px 34px;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1.5px solid var(--gold-dim);
+    border-radius: 8px;
+    padding: 15px 28px;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* floating letters deco */
+  .deco-float {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 15vw, 180px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.12);
+    line-height: 1;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+    letter-spacing: -10px;
+  }
+
+  /* stats row */
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 56px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s forwards;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding-top: 32px;
+  }
+
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: #8A7A5A;
+    font-family: 'Source Code Pro', monospace;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLL CTA ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold-dim);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section-body {
+    font-size: 0.97rem;
+    color: #BBA97A;
+    line-height: 1.8;
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    margin: 0;
+  }
+
+  /* ── PATH / CURRICULUM MAP ── */
+  .path-section {
+    background: var(--mid);
+    padding: 80px 0;
+  }
+
+  .path-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .levels-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .level-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items: start;
+    gap: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .level-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--level-color, var(--gold-dim));
+    border-radius: 12px 0 0 12px;
+  }
+
+  .level-row:hover {
+    border-color: rgba(201,168,76,0.35);
+    background: rgba(255,255,255,0.055);
+  }
+
+  .level-row.available { cursor: pointer; }
+  .level-row.available:hover .level-badge { background: var(--gold); color: var(--dark); }
+
+  .level-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--level-color, var(--gold-dim));
+    border: 2px solid var(--level-color, var(--gold-dim));
+    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .level-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .level-info p {
+    font-size: 0.83rem;
+    color: #8A7A5A;
+    line-height: 1.5;
+  }
+
+  .level-lessons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .lesson-chip {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.06);
+    color: #8A7A5A;
+    border: 1px solid rgba(255,255,255,0.07);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .lesson-chip.done {
+    background: rgba(201,168,76,0.12);
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.25);
+  }
+
+  .lesson-chip.done:hover {
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  .level-count {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: #5A4A2A;
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  .level-count span {
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-dim);
+    display: block;
+    font-weight: 700;
+  }
+
+  .lock-icon {
+    font-size: 1.2rem;
+    opacity: 0.35;
+  }
+
+  /* ── WHY SECTION ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .why-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 12px;
+    padding: 24px 22px;
+  }
+
+  .why-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+  .why-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .why-card p {
+    font-size: 0.85rem;
+    color: #8A7A5A;
+    line-height: 1.7;
+  }
+
+  /* ── IELTS TARGET ── */
+  .ielts-section {
+    background: var(--mid);
+    padding: 80px 0;
+  }
+
+  .ielts-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) { .ielts-inner { grid-template-columns: 1fr; } }
+
+  .band-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .band-table tr { border-bottom: 1px solid rgba(201,168,76,0.08); }
+  .band-table tr:last-child { border-bottom: none; }
+
+  .band-table td {
+    padding: 10px 8px;
+    font-size: 0.88rem;
+  }
+
+  .band-table td:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--gold);
+    width: 60px;
+  }
+
+  .band-table td:nth-child(2) { color: var(--cream); }
+  .band-table td:last-child {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: #5A4A2A;
+    text-align: right;
+  }
+
+  .band-bar {
+    height: 3px;
+    background: rgba(201,168,76,0.08);
+    border-radius: 2px;
+    margin-top: 4px;
+  }
+
+  .band-bar-fill {
+    height: 3px;
+    border-radius: 2px;
+    background: var(--gold);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: #5A4A2A;
+    letter-spacing: 1px;
+  }
+
+  footer a { color: var(--gold-dim); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .level-row { grid-template-columns: 56px 1fr; }
+    .level-count { display: none; }
+    .hero-stats { gap: 20px; }
+    .deco-float { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ HERO -->
+<div class="hero">
+  <div class="deco-float">ABC</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">English for Isaan &nbsp;·&nbsp; ภาษาอังกฤษสำหรับคนอีสาน</div>
+    <h1 class="hero-title">จากตัวอักษร<br>ถึง <em>IELTS</em></h1>
+    <p class="hero-sub">หลักสูตรภาษาอังกฤษฟรี ออกแบบสำหรับคนไทย — เรียนได้ทุกที่ ไม่ต้องมีอินเทอร์เน็ต เริ่มต้นจากศูนย์ไปถึงระดับสากล</p>
+    <div class="hero-cta-row">
+      <a href="lesson-01-alphabet.html" class="btn-primary">▶ เริ่มเรียนบทที่ 1</a>
+      <a href="#curriculum" class="btn-secondary">ดูหลักสูตรทั้งหมด ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">120</div>
+        <div class="stat-label">บทเรียน</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">7</div>
+        <div class="stat-label">ระดับ</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">ฟรี</div>
+        <div class="stat-label">ตลอดไป</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">A0→C2</div>
+        <div class="stat-label">ระดับ CEFR</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>เลื่อนลง</span>
+    <span>↓</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════════ WHY -->
+<section>
+  <div class="section-label">ทำไมต้องเรียนที่นี่</div>
+  <h2 class="section-heading">ออกแบบมาสำหรับ<br>คนอีสานโดยเฉพาะ</h2>
+  <p class="section-body">หลักสูตรนี้เข้าใจว่าคนอีสานเรียนภาษาอังกฤษมีจุดแข็งและจุดอ่อนของตัวเอง — เราใช้ภาษาไทยกลางอธิบาย เปรียบเทียบเสียงที่คนไทยมักติด และเรียงลำดับเนื้อหาจากง่ายไปยากอย่างเป็นระบบ</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🇹🇭</div>
+      <h4>อธิบายเป็นภาษาไทย</h4>
+      <p>ทุกบทเรียนอธิบายด้วยภาษาไทยกลางที่ชัดเจน ไม่ต้องรู้ภาษาอังกฤษมาก่อน</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <h4>ใช้ได้โดยไม่ต้องมีเน็ต</h4>
+      <p>ดาวน์โหลดบทเรียนแล้วเรียนออฟไลน์ได้ เหมาะกับพื้นที่ที่สัญญาณไม่แรง</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h4>มุ่งสู่ IELTS</h4>
+      <p>ทุกบทเรียนวางรากฐานไปสู่ IELTS Band 6.5–7.5 อย่างเป็นระบบ ไม่เรียนเกินจำเป็น</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🆓</div>
+      <h4>ฟรีตลอดไป</h4>
+      <p>ไม่มีค่าสมัคร ไม่มีโฆษณา ไม่มีหลักสูตรพรีเมียม — ฟรีทุกบทเรียนทุกคน</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🧠</div>
+      <h4>แบบทดสอบทุกบท</h4>
+      <p>แบบทดสอบสั้นๆ ท้ายทุกบทช่วยให้รู้ว่าเข้าใจจริงก่อนไปบทต่อไป</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🗺️</div>
+      <h4>เห็นความก้าวหน้า</h4>
+      <p>แผนที่หลักสูตรแสดงให้เห็นชัดว่าเรียนถึงไหนแล้ว และยังเหลือเส้นทางอีกเท่าไร</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════════ CURRICULUM -->
+<div class="path-section" id="curriculum">
+  <div class="path-inner">
+    <div class="section-label">หลักสูตร</div>
+    <h2 class="section-heading">เส้นทางการเรียน<br>120 บทเรียน</h2>
+    <p class="section-body">เริ่มจากตัวอักษร A ไปถึงการสอบ IELTS — แต่ละระดับสร้างต่อจากระดับก่อนหน้า บทเรียนที่พร้อมแล้วแสดงด้วยสีทอง</p>
+
+    <div class="levels-grid">
+
+      <!-- A0 -->
+      <div class="level-row available" style="--level-color: #C9A84C;" onclick="location.href='lesson-01-alphabet.html'">
+        <div class="level-badge">A0</div>
+        <div class="level-info">
+          <h3>ผู้เริ่มต้นสมบูรณ์ · Complete Beginner</h3>
+          <p>ตัวอักษร · ตัวเลข · สี · คำในชีวิตประจำวัน · คำทักทาย</p>
+          <div class="level-lessons">
+            <a href="lesson-01-alphabet.html" class="lesson-chip done">01 · ตัวอักษร A–Z</a>
+            <span class="lesson-chip">02 · ตัวเลข 1–100</span>
+            <span class="lesson-chip">03 · สีและรูปทรง</span>
+            <span class="lesson-chip">04 · ห้องเรียน</span>
+            <span class="lesson-chip">05 · ครอบครัว</span>
+          </div>
+        </div>
+        <div class="level-count"><span>1/5</span>บทเรียน<br>พร้อมแล้ว</div>
+      </div>
+
+      <!-- A1 -->
+      <div class="level-row" style="--level-color: #8A9E6A;">
+        <div class="level-badge">A1</div>
+        <div class="level-info">
+          <h3>เริ่มต้น · Beginner</h3>
+          <p>กริยาปัจจุบัน · ประโยคพื้นฐาน · อาหาร · สถานที่ · เวลา</p>
+          <div class="level-lessons">
+            <span class="lesson-chip">06–10 · กริยาพื้นฐาน</span>
+            <span class="lesson-chip">11–15 · ปัจจุบันกาล</span>
+            <span class="lesson-chip">16–20 · อาหารและเครื่องดื่ม</span>
+          </div>
+        </div>
+        <div class="level-count"><span class="lock-icon">🔒</span>เร็วๆ นี้</div>
+      </div>
+
+      <!-- A2 -->
+      <div class="level-row" style="--level-color: #5B8FA8;">
+        <div class="level-badge">A2</div>
+        <div class="level-info">
+          <h3>ขั้นต้น · Elementary</h3>
+          <p>อดีตกาล · คำถาม · การซื้อของ · การเดินทาง · สุขภาพ</p>
+          <div class="level-lessons">
+            <span class="lesson-chip">21–30 · อดีตกาล</span>
+            <span class="lesson-chip">31–35 · คำถาม WH–</span>
+            <span class="lesson-chip">36–40 · การเดินทาง</span>
+          </div>
+        </div>
+        <div class="level-count"><span class="lock-icon">🔒</span>เร็วๆ นี้</div>
+      </div>
+
+      <!-- B1 -->
+      <div class="level-row" style="--level-color: #9B7FA8;">
+        <div class="level-badge">B1</div>
+        <div class="level-info">
+          <h3>กลาง · Intermediate</h3>
+          <p>ย่อหน้า · ความคิดเห็น · การอ่านเข้าใจ · การฟัง · คำศัพท์ Academic</p>
+          <div class="level-lessons">
+            <span class="lesson-chip">41–50 · เขียนย่อหน้า</span>
+            <span class="lesson-chip">51–58 · การฟัง</span>
+            <span class="lesson-chip">59–65 · คำศัพท์วิชาการ</span>
+          </div>
+        </div>
+        <div class="level-count"><span class="lock-icon">🔒</span>เร็วๆ นี้</div>
+      </div>
+
+      <!-- B2 -->
+      <div class="level-row" style="--level-color: #C04A2A;">
+        <div class="level-badge">B2</div>
+        <div class="level-info">
+          <h3>ค่อนข้างสูง · Upper-Intermediate</h3>
+          <p>เรียงความ · การโต้แย้ง · IELTS Reading · IELTS Listening · Academic Writing</p>
+          <div class="level-lessons">
+            <span class="lesson-chip">66–75 · IELTS Reading</span>
+            <span class="lesson-chip">76–82 · IELTS Listening</span>
+            <span class="lesson-chip">83–90 · Academic Writing</span>
+          </div>
+        </div>
+        <div class="level-count"><span class="lock-icon">🔒</span>เร็วๆ นี้</div>
+      </div>
+
+      <!-- C1 -->
+      <div class="level-row" style="--level-color: #A87A2A;">
+        <div class="level-badge">C1</div>
+        <div class="level-info">
+          <h3>สูง · Advanced</h3>
+          <p>IELTS Writing Task 1 & 2 · IELTS Speaking Bands · การพูดอย่างมั่นใจ</p>
+          <div class="level-lessons">
+            <span class="lesson-chip">91–98 · Writing Task 1</span>
+            <span class="lesson-chip">99–105 · Writing Task 2</span>
+            <span class="lesson-chip">106–110 · Speaking</span>
+          </div>
+        </div>
+        <div class="level-count"><span class="lock-icon">🔒</span>เร็วๆ นี้</div>
+      </div>
+
+      <!-- C2 -->
+      <div class="level-row" style="--level-color: #E8C96B;">
+        <div class="level-badge">C2</div>
+        <div class="level-info">
+          <h3>เชี่ยวชาญ · IELTS Ready</h3>
+          <p>แบบทดสอบเต็มรูปแบบ · วิเคราะห์ข้อผิดพลาด · กลยุทธ์ Band 7+</p>
+          <div class="level-lessons">
+            <span class="lesson-chip">111–116 · Mock Tests</span>
+            <span class="lesson-chip">117–119 · Error Analysis</span>
+            <span class="lesson-chip">120 · Band 7+ Strategy</span>
+          </div>
+        </div>
+        <div class="level-count"><span class="lock-icon">🔒</span>เร็วๆ นี้</div>
+      </div>
+
+    </div><!-- /levels-grid -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ IELTS BANDS -->
+<div class="ielts-section">
+  <div class="ielts-inner">
+    <div>
+      <div class="section-label">เป้าหมาย</div>
+      <h2 class="section-heading">คะแนน IELTS<br>หมายความว่าอะไร?</h2>
+      <p class="section-body" style="margin-bottom:0">หลักสูตรนี้มุ่งพาคุณไปถึง Band 6.5–7.5 ซึ่งเพียงพอสำหรับมหาวิทยาลัย การทำงานในต่างประเทศ และการย้ายถิ่นฐาน</p>
+    </div>
+    <div>
+      <table class="band-table">
+        <tr>
+          <td>9.0</td>
+          <td>ผู้เชี่ยวชาญ Expert</td>
+          <td>C2</td>
+        </tr>
+        <tr>
+          <td>8.0</td>
+          <td>ดีมาก Very Good</td>
+          <td>C1</td>
+        </tr>
+        <tr>
+          <td>7.0</td>
+          <td>ดี Good <span style="color:var(--gold);font-size:0.75rem">← เป้าหมาย</span></td>
+          <td>B2/C1</td>
+        </tr>
+        <tr>
+          <td>6.0</td>
+          <td>มีความสามารถ Competent</td>
+          <td>B2</td>
+        </tr>
+        <tr>
+          <td>5.0</td>
+          <td>ปานกลาง Modest</td>
+          <td>B1</td>
+        </tr>
+        <tr>
+          <td>4.0</td>
+          <td>จำกัด Limited</td>
+          <td>A2</td>
+        </tr>
+        <tr>
+          <td>1–3</td>
+          <td>เริ่มต้น Beginner</td>
+          <td>A0–A1</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ FINAL CTA -->
+<section style="text-align:center; padding: 80px 24px;">
+  <div class="section-label" style="text-align:center">พร้อมแล้ว?</div>
+  <h2 class="section-heading" style="margin: 0 auto 16px; text-align:center">เริ่มต้นวันนี้<br>ฟรี ไม่มีเงื่อนไข</h2>
+  <p style="color:#8A7A5A; font-size:0.95rem; margin-bottom:36px; line-height:1.7">บทที่ 1 รออยู่แล้ว — ใช้เวลาแค่ 20 นาที<br>เรียนได้เดี๋ยวนี้ ไม่ต้องสมัคร ไม่ต้องมีอินเทอร์เน็ต</p>
+  <a href="lesson-01-alphabet.html" class="btn-primary" style="font-size:1.05rem; padding:17px 44px">▶ เริ่มบทที่ 1 — ตัวอักษร A–Z</a>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ FOOTER -->
+<footer>
+  <p>English for Isaan &nbsp;·&nbsp; <a href="https://github.com/jallie76/English-for-Isaan">GitHub</a> &nbsp;·&nbsp; ฟรีตลอดไป · Free forever &nbsp;·&nbsp; สร้างด้วย ❤️ สำหรับคนอีสาน</p>
+</footer>
+
+</body>
+</html>
