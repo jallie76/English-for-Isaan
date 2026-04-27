@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บทที่ 1 – ตัวอักษรภาษาอังกฤษ | English for Isaan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Thai:wght@300;400;600&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96B;
+    --cream: #F9F4E8;
+    --dark: #1A1208;
+    --bark: #3D2B0E;
+    --moss: #4A6741;
+    --sky: #5B8FA8;
+    --red: #C04A2A;
+    --card-bg: #FFFDF5;
+    --shadow: 0 4px 24px rgba(26,18,8,0.13);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Sans Thai', sans-serif;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--dark);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 36px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  h1 span { color: var(--gold); }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #BBA97A;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.1);
+    border-radius: 99px;
+    height: 6px;
+    max-width: 340px;
+  }
+  .progress-bar-fill {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    height: 6px;
+    border-radius: 99px;
+    width: 4%;
+    transition: width 0.6s ease;
+  }
+  .progress-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: #BBA97A;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ── DECORATIVE LETTERS in header ── */
+  .deco-letters {
+    position: absolute;
+    right: -10px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    opacity: 0.06;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: var(--gold);
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+
+  /* ── NAV BREADCRUMB ── */
+  .breadcrumb {
+    background: var(--bark);
+    padding: 10px 24px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .breadcrumb a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--bark);
+    margin: 48px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .section-intro {
+    font-size: 0.95rem;
+    color: #5A4A2A;
+    margin-bottom: 24px;
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  /* ── INTRO BOX ── */
+  .intro-box {
+    background: var(--dark);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--gold);
+  }
+  .intro-box p { line-height: 1.8; font-size: 0.97rem; }
+  .intro-box p + p { margin-top: 12px; }
+  .intro-box strong { color: var(--gold); }
+
+  /* ── ALPHABET GRID ── */
+  .alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .letter-card {
+    background: var(--card-bg);
+    border: 1.5px solid #E8DECC;
+    border-radius: 10px;
+    padding: 16px 12px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .letter-card:hover, .letter-card.active {
+    border-color: var(--gold);
+    background: #FFFBEE;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .letter-card.vowel { border-color: #A8CBE0; }
+  .letter-card.vowel:hover, .letter-card.vowel.active { border-color: var(--sky); background: #F0F7FC; }
+
+  .letter-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--bark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .letter-card.vowel .letter-big { color: var(--sky); }
+
+  .letter-small {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .letter-sound {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.72rem;
+    background: var(--dark);
+    color: var(--gold);
+    border-radius: 4px;
+    padding: 2px 7px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .letter-thai {
+    font-size: 0.82rem;
+    color: #7A6040;
+    line-height: 1.4;
+  }
+
+  .letter-tag {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    font-size: 8px;
+    font-family: 'Source Code Pro', monospace;
+    letter-spacing: 1px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #E8DECC;
+    color: #8B6A3A;
+  }
+  .letter-card.vowel .letter-tag { background: #D6EAF5; color: #3A7A9C; }
+
+  /* ── PLAY BUTTON ── */
+  .play-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 3px 6px;
+    border-radius: 50%;
+    transition: background 0.15s;
+    vertical-align: middle;
+  }
+  .play-btn:hover { background: rgba(201,168,76,0.15); }
+
+  /* ── DETAIL PANEL ── */
+  .detail-panel {
+    background: var(--dark);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: -8px 0 32px;
+    display: none;
+    animation: slideDown 0.2s ease;
+    border-top: 3px solid var(--gold);
+  }
+  .detail-panel.show { display: block; }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .detail-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--gold);
+    float: left;
+    margin-right: 24px;
+    line-height: 1;
+  }
+
+  .detail-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .detail-content p { font-size: 0.92rem; line-height: 1.75; color: #D4C4A0; margin-bottom: 8px; }
+  .detail-content strong { color: var(--cream); }
+
+  .example-words {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    clear: both;
+  }
+
+  .example-word {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+  }
+  .example-word .eng { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); }
+  .example-word .ipa { font-size: 0.75rem; color: var(--gold); font-family: 'Source Code Pro', monospace; }
+  .example-word .thai { font-size: 0.8rem; color: #BBA97A; }
+
+  /* ── PHONICS TIPS ── */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 600px) { .tip-grid { grid-template-columns: 1fr; } }
+
+  .tip-card {
+    background: var(--card-bg);
+    border: 1.5px solid #E8DECC;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .tip-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--bark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tip-card p { font-size: 0.87rem; line-height: 1.7; color: #5A4A2A; }
+  .tip-card .highlight { color: var(--red); font-weight: 600; }
+  .tip-card .ok { color: var(--moss); font-weight: 600; }
+
+  /* ── GREETINGS ── */
+  .greetings-grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .greeting-row {
+    background: var(--card-bg);
+    border: 1.5px solid #E8DECC;
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.15s;
+  }
+  .greeting-row:hover { border-color: var(--gold); }
+  @media (max-width: 600px) {
+    .greeting-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  .g-eng {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--bark);
+    font-weight: 700;
+  }
+  .g-pron {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.8rem;
+    color: var(--sky);
+  }
+  .g-thai {
+    font-size: 0.9rem;
+    color: #7A6040;
+  }
+  .g-context {
+    font-size: 0.75rem;
+    font-family: 'Source Code Pro', monospace;
+    color: #AAA;
+    text-align: right;
+  }
+
+  /* ── QUIZ SECTION ── */
+  .quiz-box {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+
+  .quiz-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .quiz-box .quiz-sub {
+    font-size: 0.88rem;
+    color: #BBA97A;
+    margin-bottom: 24px;
+  }
+
+  .quiz-question {
+    display: none;
+  }
+  .quiz-question.active { display: block; }
+
+  .quiz-prompt {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .quiz-instruction {
+    font-size: 0.85rem;
+    color: #BBA97A;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 460px;
+    margin: 0 auto 20px;
+  }
+
+  .quiz-opt {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 0.93rem;
+    color: var(--cream);
+    text-align: left;
+    transition: all 0.15s;
+    font-family: 'Noto Sans Thai', sans-serif;
+  }
+  .quiz-opt:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+  .quiz-opt.correct { border-color: #6AAF6A; background: rgba(74,103,65,0.3); color: #A8DBA8; }
+  .quiz-opt.wrong { border-color: #C04A2A; background: rgba(192,74,42,0.2); color: #EFA090; }
+
+  .quiz-feedback {
+    text-align: center;
+    font-size: 0.92rem;
+    min-height: 28px;
+    color: #BBA97A;
+    margin-bottom: 12px;
+  }
+  .quiz-feedback.correct { color: #6AAF6A; }
+  .quiz-feedback.wrong { color: #C04A2A; }
+
+  .quiz-next {
+    display: block;
+    margin: 0 auto;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 32px;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .quiz-next:hover { background: var(--gold-light); }
+  .quiz-score {
+    text-align: center;
+    display: none;
+  }
+  .quiz-score .score-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    font-weight: 900;
+  }
+  .quiz-score p { color: #BBA97A; margin-top: 8px; }
+  .quiz-restart {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 0.92rem;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: all 0.15s;
+  }
+  .quiz-restart:hover { background: var(--gold); color: var(--dark); }
+
+  /* ── NEXT LESSON ── */
+  .next-lesson {
+    background: linear-gradient(135deg, var(--bark), var(--dark));
+    border-radius: 12px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .next-lesson h4 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .next-lesson p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    font-weight: 700;
+  }
+  .next-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .next-btn:hover { background: var(--gold-light); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: #C9A84C88; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="deco-letters">ABC</div>
+  <div class="header-inner">
+    <div class="site-label">English for Isaan &nbsp;·&nbsp; ระดับเริ่มต้น</div>
+    <h1>บทที่ 1 — <span>ตัวอักษร</span><br>The Alphabet</h1>
+    <p class="subtitle">26 ตัวอักษร · เสียงพื้นฐาน · คำทักทาย</p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label">บทที่ 1 จาก 120 &nbsp;|&nbsp; ระดับ A0 → A1</div>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="#">หน้าหลัก</a> &rsaquo; <a href="#">ระดับเริ่มต้น A0</a> &rsaquo; บทที่ 1 · ตัวอักษร
+</div>
+
+<main>
+
+  <!-- INTRO -->
+  <div class="intro-box">
+    <p>ยินดีต้อนรับสู่ <strong>English for Isaan</strong> — หลักสูตรนี้จะพาคุณเดินทางจากตัวอักษรตัวแรก ไปจนถึงการสอบ <strong>IELTS</strong> ได้คะแนนสูง</p>
+    <p>บทนี้เรียนรู้ <strong>26 ตัวอักษร</strong> ของภาษาอังกฤษ (A–Z) พร้อมเสียงออกเสียงและคำศัพท์ตัวอย่าง กดที่ตัวอักษรแต่ละตัวเพื่อดูรายละเอียด</p>
+  </div>
+
+  <!-- VOWELS NOTE -->
+  <div class="section-title">สระและพยัญชนะ · Vowels & Consonants</div>
+  <p class="section-intro">ภาษาอังกฤษมี <strong>สระ (vowels) 5 ตัว</strong> ได้แก่ A, E, I, O, U (แสดงด้วยสีฟ้า) และ <strong>พยัญชนะ (consonants) 21 ตัว</strong> ที่เหลือ (สีน้ำตาล) ทุกคำในภาษาอังกฤษต้องมีสระอย่างน้อย 1 ตัวเสมอ</p>
+
+  <!-- ALPHABET GRID -->
+  <div class="alphabet-grid" id="alphabetGrid"></div>
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-letter" id="detailLetter">A</div>
+    <div class="detail-content">
+      <h3 id="detailTitle"></h3>
+      <p id="detailDesc"></p>
+      <p id="detailTip"></p>
+    </div>
+    <div class="example-words" id="detailExamples"></div>
+  </div>
+
+  <!-- PHONICS TIPS -->
+  <div class="section-title">เคล็ดลับการออกเสียง · Pronunciation Tips</div>
+  <p class="section-intro">ภาษาไทยและภาษาอังกฤษมีเสียงต่างกันหลายจุด ต่อไปนี้คือเสียงที่คนไทยมักออกเสียงผิด</p>
+
+  <div class="tip-grid">
+    <div class="tip-card">
+      <h4>⚠️ เสียง R และ L</h4>
+      <p>ภาษาไทยไม่มีเสียง <span class="highlight">R</span> แบบภาษาอังกฤษ คำว่า <em>run</em> ออกเสียงว่า "รัน" ไม่ใช่ "ลัน" — ลิ้นไม่แตะเพดานปาก เสียง <span class="ok">L</span> ลิ้นแตะฟัน เช่น <em>love, look, live</em></p>
+    </div>
+    <div class="tip-card">
+      <h4>⚠️ เสียง V และ W</h4>
+      <p>เสียง <span class="highlight">V</span> — ฟันบนกัดริมฝีปากล่างเบาๆ เช่น <em>very, voice, visit</em><br>เสียง <span class="ok">W</span> — ห่อปาก เช่น <em>water, work, we</em> — ไม่ออกเสียง "ว" แบบไทย</p>
+    </div>
+    <div class="tip-card">
+      <h4>⚠️ เสียง TH</h4>
+      <p>ภาษาอังกฤษมีเสียง <span class="highlight">TH</span> 2 แบบ: <br>• <em>think, three</em> — ลิ้นแตะฟัน ไม่มีเสียง<br>• <em>the, this, that</em> — ลิ้นแตะฟัน มีเสียง คล้าย "ด" แต่ไม่ใช่</p>
+    </div>
+    <div class="tip-card">
+      <h4>⚠️ พยัญชนะท้ายคำ</h4>
+      <p>ภาษาไทยมักไม่ออกเสียงพยัญชนะท้าย แต่ภาษาอังกฤษต้องออก เช่น <em>cat</em> ต้องได้ยินเสียง <span class="highlight">-t</span> ชัดเจน / <em>dog</em> ต้องได้ยิน <span class="highlight">-g</span></p>
+    </div>
+    <div class="tip-card">
+      <h4>✅ เสียงที่คล้ายกัน</h4>
+      <p>เสียงบางตัวใกล้เคียงภาษาไทยมาก เช่น <span class="ok">M, N, P, T, K, S</span> — ออกเสียงแทบเหมือนกัน ใช้จุดแข็งนี้ในการเริ่มต้น</p>
+    </div>
+    <div class="tip-card">
+      <h4>✅ เสียงสระยาว-สั้น</h4>
+      <p>ภาษาอังกฤษมีสระยาวและสั้นเหมือนกัน เช่น <em>bit</em> (สั้น) กับ <em>beat</em> (ยาว), <em>not</em> กับ <em>note</em> — ความยาวเสียงเปลี่ยนความหมาย</p>
+    </div>
+  </div>
+
+  <!-- GREETINGS -->
+  <div class="section-title">คำทักทายพื้นฐาน · Basic Greetings</div>
+  <p class="section-intro">คำทักทายเหล่านี้คือประโยคแรกที่ควรจำ ใช้ได้ในชีวิตประจำวันทันที</p>
+
+  <div class="greetings-grid" id="greetingsGrid"></div>
+
+  <!-- QUIZ -->
+  <div class="section-title">ทบทวนความรู้ · Quick Quiz</div>
+  <p class="section-intro">ทดสอบความจำตัวอักษรที่เรียนไป — เลือกเสียงออกเสียงที่ถูกต้องของตัวอักษรที่แสดง</p>
+
+  <div class="quiz-box">
+    <h3>แบบทดสอบบทที่ 1</h3>
+    <div class="quiz-sub">เลือกคำตอบที่ถูกต้อง · Choose the correct answer</div>
+
+    <div id="quizContainer"></div>
+    <div class="quiz-score" id="quizScore">
+      <div class="score-big" id="scoreBig"></div>
+      <p id="scoreMsg"></p>
+      <button class="quiz-restart" onclick="restartQuiz()">ทำอีกครั้ง · Try Again</button>
+    </div>
+  </div>
+
+  <!-- NEXT LESSON -->
+  <div class="next-lesson">
+    <div>
+      <h4>บทถัดไป · Next Lesson</h4>
+      <p>บทที่ 2 — ตัวเลขและสี<br><span style="font-family:'Noto Sans Thai',sans-serif;font-size:0.9rem;font-weight:300;color:#BBA97A">Numbers &amp; Colors</span></p>
+    </div>
+    <button class="next-btn">ไปบทถัดไป →</button>
+  </div>
+
+</main>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+const letters = [
+  { l:'A', type:'vowel', ipa:'/eɪ/', thai:'เอ', sound:'เสียง "เอ" เหมือนใน "เอย์"', tip:'ออกเสียงยาวๆ เหมือนพยัญชนะ ก-ฮ ใน "เอ"', examples:[{eng:'Apple',ipa:'/ˈæp.əl/',thai:'แอปเปิ้ล'},{eng:'Ant',ipa:'/ænt/',thai:'มดแดง'},{eng:'Air',ipa:'/eər/',thai:'อากาศ'}] },
+  { l:'B', type:'consonant', ipa:'/biː/', thai:'บี', sound:'เสียง "บ" แต่มีลมออกมาด้วย', tip:'ปิดริมฝีปากแล้วปล่อยลม เหมือน "บ" แต่ดังกว่า', examples:[{eng:'Book',ipa:'/bʊk/',thai:'หนังสือ'},{eng:'Bus',ipa:'/bʌs/',thai:'รถเมล์'},{eng:'Ball',ipa:'/bɔːl/',thai:'ลูกบอล'}] },
+  { l:'C', type:'consonant', ipa:'/siː/', thai:'ซี', sound:'เสียง "ซี" หรือ "ค" ขึ้นอยู่กับคำ', tip:'ก่อนสระ E, I, Y ออกเสียง "ซ" เช่น city / ก่อนตัวอื่นออกเสียง "ค" เช่น cat', examples:[{eng:'Cat',ipa:'/kæt/',thai:'แมว'},{eng:'City',ipa:'/ˈsɪt.i/',thai:'เมือง'},{eng:'Cup',ipa:'/kʌp/',thai:'ถ้วย'}] },
+  { l:'D', type:'consonant', ipa:'/diː/', thai:'ดี', sound:'เสียง "ด" แต่มีเสียงในลำคอ', tip:'คล้ายเสียง "ด" ในภาษาไทย แต่ดังกว่าเล็กน้อย', examples:[{eng:'Dog',ipa:'/dɒg/',thai:'หมา'},{eng:'Door',ipa:'/dɔːr/',thai:'ประตู'},{eng:'Day',ipa:'/deɪ/',thai:'วัน'}] },
+  { l:'E', type:'vowel', ipa:'/iː/', thai:'อี', sound:'เสียง "อี" ยาว เหมือนอุทาน "อีก!"', tip:'ปากยิ้มกว้าง ออกเสียง "อี" ยาว', examples:[{eng:'Egg',ipa:'/eɡ/',thai:'ไข่'},{eng:'Ear',ipa:'/ɪər/',thai:'หู'},{eng:'End',ipa:'/end/',thai:'จบ/ปลาย'}] },
+  { l:'F', type:'consonant', ipa:'/ef/', thai:'เอฟ', sound:'เสียง "ฟ" ฟันบนกัดริมฝีปากล่าง', tip:'ไม่ใช่เสียง "ป" หรือ "พ" — ฟันต้องสัมผัสริมฝีปากล่างเบาๆ', examples:[{eng:'Fish',ipa:'/fɪʃ/',thai:'ปลา'},{eng:'Food',ipa:'/fuːd/',thai:'อาหาร'},{eng:'Four',ipa:'/fɔːr/',thai:'สี่'}] },
+  { l:'G', type:'consonant', ipa:'/dʒiː/', thai:'จี', sound:'เสียง "ก" แบบมีเสียงในลำคอ', tip:'คล้าย "ก" ในภาษาไทย แต่ในบางคำออกเสียง "จ" เช่น gym, giant', examples:[{eng:'Go',ipa:'/ɡoʊ/',thai:'ไป'},{eng:'Girl',ipa:'/ɡɜːrl/',thai:'เด็กผู้หญิง'},{eng:'Good',ipa:'/ɡʊd/',thai:'ดี'}] },
+  { l:'H', type:'consonant', ipa:'/eɪtʃ/', thai:'เอช', sound:'เสียงลมหายใจออก "ฮ" เบาๆ', tip:'เหมือนถอนหายใจ ไม่ใช่เสียง "ห" แบบไทย — เบากว่า', examples:[{eng:'Hello',ipa:'/həˈloʊ/',thai:'สวัสดี'},{eng:'House',ipa:'/haʊs/',thai:'บ้าน'},{eng:'Hot',ipa:'/hɒt/',thai:'ร้อน'}] },
+  { l:'I', type:'vowel', ipa:'/aɪ/', thai:'อาย', sound:'เสียง "อาย" เหมือน "ใจ" ไม่มี จ', tip:'ปากอ้าแล้วเลื่อนเป็น "อาย" เหมือนคำว่า "ไอ" ในภาษาไทย', examples:[{eng:'Ice',ipa:'/aɪs/',thai:'น้ำแข็ง'},{eng:'In',ipa:'/ɪn/',thai:'ใน'},{eng:'Ink',ipa:'/ɪŋk/',thai:'หมึก'}] },
+  { l:'J', type:'consonant', ipa:'/dʒeɪ/', thai:'เจ', sound:'เสียง "จ" แต่นุ่มกว่าภาษาไทย', tip:'คล้าย "จ" ในภาษาไทย แต่มีเสียงในลำคอมากกว่า', examples:[{eng:'Juice',ipa:'/dʒuːs/',thai:'น้ำผลไม้'},{eng:'Job',ipa:'/dʒɒb/',thai:'งาน'},{eng:'Jump',ipa:'/dʒʌmp/',thai:'กระโดด'}] },
+  { l:'K', type:'consonant', ipa:'/keɪ/', thai:'เค', sound:'เสียง "ค" แบบมีลมพ่นออกมา', tip:'เหมือน "ก" ในภาษาไทย แต่มีลมออกมามากกว่า บางครั้ง K ไม่ออกเสียง เช่น knife, know', examples:[{eng:'Key',ipa:'/kiː/',thai:'กุญแจ'},{eng:'King',ipa:'/kɪŋ/',thai:'กษัตริย์'},{eng:'Kitchen',ipa:'/ˈkɪtʃ.ən/',thai:'ห้องครัว'}] },
+  { l:'L', type:'consonant', ipa:'/el/', thai:'เอล', sound:'เสียง "ล" ลิ้นแตะฟัน', tip:'ลิ้นแตะฟันบน ไม่ใช่เพดานปาก — ต่างจาก R ตรงที่ลิ้นสัมผัส', examples:[{eng:'Love',ipa:'/lʌv/',thai:'รัก'},{eng:'Look',ipa:'/lʊk/',thai:'มอง'},{eng:'Light',ipa:'/laɪt/',thai:'แสง/เบา'}] },
+  { l:'M', type:'consonant', ipa:'/em/', thai:'เอ็ม', sound:'เสียง "ม" ปิดริมฝีปาก มีเสียงฮัม', tip:'เหมือน "ม" ในภาษาไทยทุกประการ ง่ายมาก!', examples:[{eng:'Man',ipa:'/mæn/',thai:'ผู้ชาย'},{eng:'Map',ipa:'/mæp/',thai:'แผนที่'},{eng:'Moon',ipa:'/muːn/',thai:'พระจันทร์'}] },
+  { l:'N', type:'consonant', ipa:'/en/', thai:'เอ็น', sound:'เสียง "น" ลิ้นแตะเพดานปาก', tip:'เหมือน "น" ในภาษาไทย', examples:[{eng:'Name',ipa:'/neɪm/',thai:'ชื่อ'},{eng:'Night',ipa:'/naɪt/',thai:'คืน'},{eng:'Now',ipa:'/naʊ/',thai:'ตอนนี้'}] },
+  { l:'O', type:'vowel', ipa:'/oʊ/', thai:'โอ', sound:'เสียง "โอ" กลมปาก', tip:'ห่อปากเป็นวงกลม ออกเสียง "โอ" เหมือนแปลกใจ "โอ้!"', examples:[{eng:'Old',ipa:'/oʊld/',thai:'แก่/เก่า'},{eng:'Open',ipa:'/ˈoʊ.pən/',thai:'เปิด'},{eng:'On',ipa:'/ɒn/',thai:'บน/เปิด'}] },
+  { l:'P', type:'consonant', ipa:'/piː/', thai:'พี', sound:'เสียง "พ" มีลมพ่นออกมาชัด', tip:'เหมือน "ป" แต่มีลมออกมามากกว่า — วางมือหน้าปากจะรู้สึกลม', examples:[{eng:'People',ipa:'/ˈpiː.pəl/',thai:'คน/ผู้คน'},{eng:'Plan',ipa:'/plæn/',thai:'แผน'},{eng:'Place',ipa:'/pleɪs/',thai:'สถานที่'}] },
+  { l:'Q', type:'consonant', ipa:'/kjuː/', thai:'คิว', sound:'เสียง "คว" เกือบเสมอ', tip:'Q ตามด้วย U เกือบทุกครั้ง เช่น queen, question, quick', examples:[{eng:'Queen',ipa:'/kwiːn/',thai:'ราชินี'},{eng:'Quick',ipa:'/kwɪk/',thai:'เร็ว'},{eng:'Quiet',ipa:'/ˈkwaɪ.ət/',thai:'เงียบ'}] },
+  { l:'R', type:'consonant', ipa:'/ɑːr/', thai:'อาร์', sound:'เสียง "ร" แบบอังกฤษ — ลิ้นไม่แตะเพดาน', tip:'ปากห่อเล็กน้อย ลิ้นงอขึ้น แต่ไม่แตะที่ไหน — ยากที่สุดสำหรับคนไทย!', examples:[{eng:'Run',ipa:'/rʌn/',thai:'วิ่ง'},{eng:'Road',ipa:'/roʊd/',thai:'ถนน'},{eng:'Right',ipa:'/raɪt/',thai:'ขวา/ถูกต้อง'}] },
+  { l:'S', type:'consonant', ipa:'/es/', thai:'เอส', sound:'เสียง "ส" หายใจออกเป็นเสียงฟี่', tip:'เหมือน "ส" ในภาษาไทย ง่าย!', examples:[{eng:'Sun',ipa:'/sʌn/',thai:'ดวงอาทิตย์'},{eng:'School',ipa:'/skuːl/',thai:'โรงเรียน'},{eng:'See',ipa:'/siː/',thai:'มอง/เห็น'}] },
+  { l:'T', type:'consonant', ipa:'/tiː/', thai:'ที', sound:'เสียง "ต" มีลมพ่นออกมา', tip:'เหมือน "ต" แต่มีลมออกมาชัดกว่า', examples:[{eng:'Time',ipa:'/taɪm/',thai:'เวลา'},{eng:'Teacher',ipa:'/ˈtiː.tʃər/',thai:'ครู'},{eng:'Today',ipa:'/təˈdeɪ/',thai:'วันนี้'}] },
+  { l:'U', type:'vowel', ipa:'/juː/', thai:'ยู', sound:'เสียง "ยู" เหมือน "ยูโร"', tip:'ริมฝีปากห่อ ออกเสียง "ยู" แบบยาว', examples:[{eng:'Up',ipa:'/ʌp/',thai:'ขึ้น'},{eng:'Use',ipa:'/juːz/',thai:'ใช้'},{eng:'Under',ipa:'/ˈʌn.dər/',thai:'ใต้'}] },
+  { l:'V', type:'consonant', ipa:'/viː/', thai:'วี', sound:'เสียง "ว" แต่ฟันสัมผัสริมฝีปากล่าง', tip:'คนไทยมักออกเสียง V เป็น W — ต้องให้ฟันบนสัมผัสริมฝีปากล่างเสมอ', examples:[{eng:'Very',ipa:'/ˈver.i/',thai:'มาก'},{eng:'Voice',ipa:'/vɔɪs/',thai:'เสียง'},{eng:'Visit',ipa:'/ˈvɪz.ɪt/',thai:'เยี่ยม'}] },
+  { l:'W', type:'consonant', ipa:'/ˈdʌb.əl.juː/', thai:'ดับเบิ้ลยู', sound:'เสียง "ว" ห่อปาก', tip:'คล้าย "ว" ในภาษาไทย แต่ห่อปากมากกว่า ไม่ให้ฟันสัมผัสริมฝีปาก', examples:[{eng:'Water',ipa:'/ˈwɔː.tər/',thai:'น้ำ'},{eng:'Work',ipa:'/wɜːrk/',thai:'ทำงาน'},{eng:'We',ipa:'/wiː/',thai:'เรา'}] },
+  { l:'X', type:'consonant', ipa:'/eks/', thai:'เอ็กซ์', sound:'เสียง "คซ" หรือ "ซ" ขึ้นอยู่กับตำแหน่ง', tip:'ส่วนใหญ่ออกเสียง "กซ" เช่น box, fox / บางครั้งออกเสียง "ซ" เช่น xylophone', examples:[{eng:'Box',ipa:'/bɒks/',thai:'กล่อง'},{eng:'Fox',ipa:'/fɒks/',thai:'สุนัขจิ้งจอก'},{eng:'Exam',ipa:'/ɪɡˈzæm/',thai:'สอบ'}] },
+  { l:'Y', type:'consonant', ipa:'/waɪ/', thai:'วาย', sound:'เสียง "ย" ในภาษาไทย', tip:'เหมือน "ย" ในภาษาไทยทุกประการ เช่น yes, year, you', examples:[{eng:'Yes',ipa:'/jes/',thai:'ใช่'},{eng:'Year',ipa:'/jɪər/',thai:'ปี'},{eng:'You',ipa:'/juː/',thai:'คุณ'}] },
+  { l:'Z', type:'consonant', ipa:'/zed/', thai:'เซ็ด', sound:'เสียง "ซ" แบบมีเสียงฮัม', tip:'เหมือน "ส" แต่มีเสียงในลำคอ วางนิ้วที่คอจะรู้สึกสั่น', examples:[{eng:'Zoo',ipa:'/zuː/',thai:'สวนสัตว์'},{eng:'Zero',ipa:'/ˈzɪər.oʊ/',thai:'ศูนย์'},{eng:'Zone',ipa:'/zoʊn/',thai:'เขต/พื้นที่'}] },
+];
+
+const greetings = [
+  {eng:'Hello', pron:'เฮล-โล', thai:'สวัสดี', context:'ทั่วไป'},
+  {eng:'Hi', pron:'ไฮ', thai:'สวัสดี (ทั่วไป)', context:'กันเอง'},
+  {eng:'Good morning', pron:'กุ๊ด มอร์-นิง', thai:'อรุณสวัสดิ์ (ก่อนเที่ยง)', context:'เช้า'},
+  {eng:'Good afternoon', pron:'กุ๊ด อาฟ-เตอร์-นูน', thai:'สวัสดีตอนบ่าย', context:'บ่าย'},
+  {eng:'Good evening', pron:'กุ๊ด อีฟ-นิง', thai:'สวัสดีตอนเย็น', context:'เย็น/ค่ำ'},
+  {eng:'Good night', pron:'กุ๊ด ไนท์', thai:'ราตรีสวัสดิ์', context:'ก่อนนอน'},
+  {eng:'How are you?', pron:'ฮาว อาร์ ยู', thai:'คุณเป็นยังไงบ้าง?', context:'ถาม'},
+  {eng:"I'm fine, thank you.", pron:'ไอม์ ไฟน์ แธงค์ ยู', thai:'ฉันสบายดี ขอบคุณ', context:'ตอบ'},
+  {eng:"What's your name?", pron:'วอทส์ ยัวร์ เนม', thai:'คุณชื่ออะไร?', context:'ถาม'},
+  {eng:'My name is...', pron:'มาย เนม อิซ', thai:'ฉันชื่อ...', context:'ตอบ'},
+  {eng:'Nice to meet you.', pron:'ไนซ์ ทู มีท ยู', thai:'ยินดีที่ได้รู้จัก', context:'ครั้งแรก'},
+  {eng:'Goodbye', pron:'กุ๊ด-บาย', thai:'ลาก่อน', context:'จาก'},
+  {eng:'See you later.', pron:'ซี ยู เลย์-เตอร์', thai:'เจอกันใหม่', context:'จาก'},
+  {eng:'Thank you.', pron:'แธงค์ ยู', thai:'ขอบคุณ', context:'ขอบคุณ'},
+  {eng:"You're welcome.", pron:'ยัวร์ เวล-คัม', thai:'ไม่เป็นไร', context:'ตอบขอบคุณ'},
+  {eng:'Excuse me.', pron:'เอ็กซ์-คิวซ์ มี', thai:'ขอโทษ / ขอทาง', context:'ขอทาง'},
+  {eng:"I'm sorry.", pron:'ไอม์ ซอร์รี่', thai:'ขอโทษ', context:'ขอโทษ'},
+  {eng:"I don't understand.", pron:'ไอ ดอนท์ อัน-เดอร์-สแตนด์', thai:'ฉันไม่เข้าใจ', context:'สำคัญ'},
+  {eng:'Please speak slowly.', pron:'พลีซ สปีค สโล-ลี', thai:'กรุณาพูดช้าๆ', context:'สำคัญ'},
+  {eng:'Can you repeat that?', pron:'แคน ยู ริ-พีท แดท', thai:'ช่วยพูดซ้ำได้ไหม?', context:'สำคัญ'},
+];
+
+// ── QUIZ DATA ──────────────────────────────────────────────────────────────
+const quizData = [
+  {q:'A', correct:'เอ / สระ', options:['เอ / สระ','บี / พยัญชนะ','เอฟ / พยัญชนะ','โอ / สระ']},
+  {q:'E', correct:'อี / สระ', options:['อาย / สระ','อี / สระ','เอ็ม / พยัญชนะ','อาร์ / พยัญชนะ']},
+  {q:'R', correct:'ลิ้นไม่แตะเพดาน', options:['ลิ้นแตะฟัน','ลิ้นไม่แตะเพดาน','ปิดริมฝีปาก','ฟันสัมผัสริมฝีปาก']},
+  {q:'V', correct:'ฟันบนสัมผัสริมฝีปากล่าง', options:['ห่อปาก','ลิ้นแตะฟัน','ฟันบนสัมผัสริมฝีปากล่าง','ปิดริมฝีปาก']},
+  {q:'Q', correct:'ตามด้วย U เกือบเสมอ', options:['ตามด้วย U เกือบเสมอ','ออกเสียงเดี่ยวได้','เป็นสระ','ไม่ออกเสียง']},
+  {q:'Z', correct:'เสียง ซ มีเสียงฮัม', options:['เสียง ส ไม่มีเสียง','เสียง ซ มีเสียงฮัม','เสียง จ','เสียง ย']},
+  {q:'I', correct:'อาย (เหมือน "ไอ")', options:['อี','อู','อาย (เหมือน "ไอ")','อา']},
+  {q:'W', correct:'ห่อปาก ไม่ให้ฟันสัมผัส', options:['ฟันสัมผัสริมฝีปาก','ห่อปาก ไม่ให้ฟันสัมผัส','ลิ้นแตะเพดาน','ลิ้นแตะฟัน']},
+];
+
+// ── RENDER ALPHABET ─────────────────────────────────────────────────────────
+let activeCard = null;
+const grid = document.getElementById('alphabetGrid');
+const panel = document.getElementById('detailPanel');
+
+letters.forEach((d, i) => {
+  const card = document.createElement('div');
+  card.className = `letter-card ${d.type}`;
+  card.innerHTML = `
+    <span class="letter-tag">${d.type === 'vowel' ? 'สระ' : 'พยัญชนะ'}</span>
+    <div class="letter-big">${d.l}</div>
+    <div class="letter-small">${d.l.toLowerCase()}</div>
+    <div class="letter-sound">${d.ipa}</div>
+    <div class="letter-thai">${d.thai}</div>
+  `;
+  card.addEventListener('click', () => showDetail(d, card));
+  grid.appendChild(card);
+});
+
+function showDetail(d, card) {
+  if (activeCard === card) {
+    panel.classList.remove('show');
+    card.classList.remove('active');
+    activeCard = null;
+    return;
+  }
+  if (activeCard) activeCard.classList.remove('active');
+  activeCard = card;
+  card.classList.add('active');
+
+  document.getElementById('detailLetter').textContent = d.l;
+  document.getElementById('detailTitle').textContent = `ตัวอักษร "${d.l}" — ${d.thai} (${d.ipa})`;
+  document.getElementById('detailDesc').innerHTML = `<strong>วิธีออกเสียง:</strong> ${d.sound}`;
+  document.getElementById('detailTip').innerHTML = `<strong>เคล็ดลับ:</strong> ${d.tip}`;
+
+  const ex = document.getElementById('detailExamples');
+  ex.innerHTML = d.examples.map(e => `
+    <div class="example-word">
+      <div class="eng">${e.eng}</div>
+      <div class="ipa">${e.ipa}</div>
+      <div class="thai">${e.thai}</div>
+    </div>
+  `).join('');
+
+  panel.classList.add('show');
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── RENDER GREETINGS ─────────────────────────────────────────────────────────
+const gg = document.getElementById('greetingsGrid');
+greetings.forEach(g => {
+  const row = document.createElement('div');
+  row.className = 'greeting-row';
+  row.innerHTML = `
+    <div class="g-eng">${g.eng}</div>
+    <div class="g-pron">${g.pron}</div>
+    <div class="g-thai">${g.thai}</div>
+    <div class="g-context">${g.context}</div>
+  `;
+  gg.appendChild(row);
+});
+
+// ── QUIZ ────────────────────────────────────────────────────────────────────
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function buildQuiz() {
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  quizData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = `quiz-question${i === 0 ? ' active' : ''}`;
+    div.id = `q${i}`;
+    div.innerHTML = `
+      <div class="quiz-prompt">${q.q}</div>
+      <div class="quiz-instruction">ตัวอักษรนี้มีลักษณะอะไร? · What best describes this letter?</div>
+      <div class="quiz-options">
+        ${q.options.map(opt => `<button class="quiz-opt" onclick="selectAnswer(this,'${opt}','${q.correct}',${i})">${opt}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="fb${i}"></div>
+      ${i < quizData.length - 1
+        ? `<button class="quiz-next" id="next${i}" style="display:none" onclick="nextQ(${i})">ถัดไป →</button>`
+        : `<button class="quiz-next" id="next${i}" style="display:none" onclick="showScore()">ดูคะแนน ✓</button>`
+      }
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectAnswer(btn, selected, correct, qi) {
+  if (answered) return;
+  answered = true;
+  const fb = document.getElementById(`fb${qi}`);
+  const opts = btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(b => b.disabled = true);
+
+  if (selected === correct) {
+    btn.classList.add('correct');
+    fb.textContent = '✓ ถูกต้อง! Correct!';
+    fb.className = 'quiz-feedback correct';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    opts.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+    fb.textContent = `✗ คำตอบที่ถูก: ${correct}`;
+    fb.className = 'quiz-feedback wrong';
+  }
+  document.getElementById(`next${qi}`).style.display = 'block';
+}
+
+function nextQ(i) {
+  document.getElementById(`q${i}`).classList.remove('active');
+  document.getElementById(`q${i+1}`).classList.add('active');
+  answered = false;
+}
+
+function showScore() {
+  document.getElementById('quizContainer').style.display = 'none';
+  const scoreEl = document.getElementById('quizScore');
+  scoreEl.style.display = 'block';
+  document.getElementById('scoreBig').textContent = `${score}/${quizData.length}`;
+  const pct = score / quizData.length;
+  let msg = '';
+  if (pct === 1) msg = '🏆 เยี่ยมมาก! Perfect score! คุณพร้อมไปบทถัดไปแล้ว';
+  else if (pct >= 0.75) msg = '👍 ดีมาก! Good job! ลองทำซ้ำได้เพื่อความมั่นใจ';
+  else if (pct >= 0.5) msg = '📚 พอใช้ได้! Keep practicing! ลองทบทวนตัวอักษรอีกครั้ง';
+  else msg = '💪 ยังไม่ผ่าน ไม่เป็นไร! กลับไปเรียนอักษรก่อนแล้วลองใหม่';
+  document.getElementById('scoreMsg').textContent = msg;
+  document.getElementById('progressFill').style.width = '100%';
+}
+
+function restartQuiz() {
+  score = 0; currentQ = 0; answered = false;
+  document.getElementById('quizScore').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  buildQuiz();
+  document.getElementById('progressFill').style.width = '4%';
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
